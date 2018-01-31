@@ -1,0 +1,10 @@
+{
+	"name": "name",
+	"adress": "theadress",
+	"mark": 0,
+	"price": [{
+		"startPrice": 0,
+		"endprice": 0
+	}]
+
+}

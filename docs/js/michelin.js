@@ -57,9 +57,3 @@ request({uri: "https://restaurant.michelin.fr/instants-michelin?page="+String(i)
                   });
             });
     }
-
-
-
-
-
-  //Second request (for each link)

@@ -4,44 +4,61 @@ var cheerio = require("cheerio");
 var fs = require('fs');
 var app     = express();
 
-var contents;
-var jsonContent;
 
 var contents = fs.readFileSync("michelin.json");
 
- var jsonContent = JSON.parse(contents);
 
- console.log(jsonContent.title);
 
+ var lines = String(contents).split(/\n/);
+ var wrapped =lines.join(",");
+
+  var jsonContent = JSON.parse(wrapped);
+
+  console.log(jsonContent);
+
+/*
+ var arr = [];
+
+for(var x in jsonContent){
+  arr.push(jsonContent[x]);
+}
+
+console.log(arr);
+*/
 
 request({uri: "https://www.lafourchette.com/search-refine/Le Violon d'Ingres",}, function(error, response, body) {
         try{
-
             var $ = cheerio.load(body);
 
-            $(".resultItem-name").each(function() {
-              var link = $(this);
-              var href = link.attr("href");
-              var title = link.text();
-              console.log(title);
-
-              request({
-                          uri: "https://www.lafourchette.com"+String(href),
-                        }, function(error, response, body) {
-                          var $ = cheerio.load(body);
-                          var json = { title : "", address:"", postCode:""};
+            $(".resultItem").each(function() {
+              var link = $(this).find(".resultItem-address");
 
 
-                              $(".restaurantSummary-name").each(function() {
-                                var link = $(this);
-                                var title = link.text();
-                                json.title = title;
 
-                              console.log(title)
+              if(link.text().includes("75007"))
+              {
+                  console.log(link.text());
+                  var link2 = $(this).find(".resultItem-name > a").attr("href");
 
-                               });
+                    console.log(link2);
+                      request({
+                                  uri: "https://www.lafourchette.com"+String(link2),
+                                }, function(error, response, body) {
+                                  var $ = cheerio.load(body);
 
-                            });
+                                      $(".saleType--specialOffer").each(function() {
+                                        var link = $(this);
+
+                                     var promo =  link.find(".saleType-title").text();
+                                     console.log(promo)
+
+                                       });
+
+                                    });
+
+              }
+
+
 
                   });
 

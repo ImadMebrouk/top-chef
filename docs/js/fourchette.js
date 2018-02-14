@@ -13,8 +13,10 @@ var contents = fs.readFileSync("michelin.json");
 
  console.log(jsonContent.title);
 
-/*
+
 request({uri: "https://www.lafourchette.com/search-refine/Le Violon d'Ingres",}, function(error, response, body) {
+        try{
+
             var $ = cheerio.load(body);
 
             $(".resultItem-name").each(function() {
@@ -30,7 +32,6 @@ request({uri: "https://www.lafourchette.com/search-refine/Le Violon d'Ingres",},
                           var json = { title : "", address:"", postCode:""};
 
 
-
                               $(".restaurantSummary-name").each(function() {
                                 var link = $(this);
                                 var title = link.text();
@@ -42,9 +43,8 @@ request({uri: "https://www.lafourchette.com/search-refine/Le Violon d'Ingres",},
 
                             });
 
-
-
-
                   });
+
+                }
+                catch(e){}
             });
-*/

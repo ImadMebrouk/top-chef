@@ -5,8 +5,9 @@ var fs = require('fs');
 var app     = express();
 
 
-for(var i=1; i<=14;i++){
-request({uri: "https://restaurant.michelin.fr/instants-michelin?page="+String(i),}, function(error, response, body) {
+for(var i=1; i<=35;i++){
+request({uri: "https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/restaurants-2-etoiles-michelin/restaurants-3-etoiles-michelin/page-"+String(i),}, function(error, response, body) {
+          try{
             var $ = cheerio.load(body);
 
             $(".poi-card-link").each(function() {
@@ -44,8 +45,8 @@ request({uri: "https://restaurant.michelin.fr/instants-michelin?page="+String(i)
                                 });
 
 
-                                    fs.appendFile('michelin.json', JSON.stringify(json, null, 4), function(err){
-                                    console.log('File successfully written! - Check your project directory for the output.json file');
+                                    fs.appendFile('michelin.json', JSON.stringify(json)+"\r\n", function(err){
+                                  //  console.log('File successfully written! - Check your project directory for the output.json file');
 
                           });
 
@@ -55,5 +56,8 @@ request({uri: "https://restaurant.michelin.fr/instants-michelin?page="+String(i)
 
 
                   });
+                }
+
+                catch(error){}
             });
     }

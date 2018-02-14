@@ -7,24 +7,15 @@ var app     = express();
 
 var contents = fs.readFileSync("michelin.json");
 
-
-
  var lines = String(contents).split(/\n/);
- var wrapped =lines.join(",");
-
-  var jsonContent = JSON.parse(wrapped);
-
-  console.log(jsonContent);
-
 /*
- var arr = [];
-
-for(var x in jsonContent){
-  arr.push(jsonContent[x]);
+ for each (x in lines) {
+   var jsonContent = JSON.parse(lines[1]);
 }
-
-console.log(arr);
 */
+ var jsonContent = JSON.parse(lines[1]);
+console.log(jsonContent.postCode);
+
 
 request({uri: "https://www.lafourchette.com/search-refine/Le Violon d'Ingres",}, function(error, response, body) {
         try{

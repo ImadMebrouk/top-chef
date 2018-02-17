@@ -2,7 +2,7 @@ var request = require("request");
 var express = require('express');
 var cheerio = require("cheerio");
 var fs = require('fs');
-var app     = express();
+var app = express();
 
 
 for(var i=1; i<=35;i++){

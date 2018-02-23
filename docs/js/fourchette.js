@@ -6,7 +6,6 @@ var app     = express();
 
 
 var contents = fs.readFileSync("michelin.json");
-
 var lines = String(contents).split(/\n/);
 
  for(var i =1; i < lines.length -1;i++){

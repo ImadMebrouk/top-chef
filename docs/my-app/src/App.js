@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import logoF from './logoF.png';
 import logoM from './logoM.png';
+import fourchetteResto from './fourchette.json';
 import './App.css';
 
 class App extends Component {
@@ -23,6 +24,14 @@ class App extends Component {
         <p className="test">
          integrer liste des restaurants
         </p>
+
+        <ul>
+        {
+          fourchetteResto.map(function(resto){
+            return <li>{resto.title} --> {resto.promo}</li>;
+          })
+        }
+        </ul>
 
       </div>
     );

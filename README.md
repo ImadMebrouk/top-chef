@@ -23,6 +23,7 @@
   - [Notification (bonus)](#notification-bonus)
 - [Don't forget](#dont-forget)
 - [Licence](#licence)
+- [How to run the app](#How to run the app)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -194,3 +195,9 @@ Some things to do:
 ## Licence
 
 [Uncopyrighted](http://zenhabits.net/uncopyright/)
+
+## How to run the app 
+
+1- You need to run the michelin.js module every year to actualize the restaurant list with the command : node michelin.js
+2- Then run the fourchette.js module in oder to find each restaurant and its promotion. command : node fourchette.js
+3- Finally just run **npm start** in the project folder and open http://localhost:3000 in the browser, you should see the list of restaurants and their promotions 
